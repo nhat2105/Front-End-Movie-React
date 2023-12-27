@@ -1,7 +1,7 @@
-import express from 'express'
-import cors from 'cors'
-import mysql from 'mysql'
-import jwt from 'jsonwebtoken' 
+const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql')
+const jwt = require('jsonwebtoken') 
 
 const app = express()
 const PORT = 3001;
@@ -13,7 +13,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'test',
+    database: 'movies',
     port: 3305 //myadmin port
 
 })
