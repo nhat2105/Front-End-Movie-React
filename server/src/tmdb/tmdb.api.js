@@ -1,36 +1,38 @@
-import tmdbConfig from "./tmdb.config.js";
+import axiosClient from "../axios/axios.client.js";
+import tmdbEndpoints from "./tmdb.endpoints.js";
 
-const tmdbEndpoints = {
-  mediaList: ({ mediaType, mediaCategory, page }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaCategory}`, { page }
+//using axios to communicate with front-end
+const tmdbApi = {
+  mediaList: async ({ mediaType, mediaCategory, page }) => await axiosClient.get(
+    tmdbEndpoints.mediaList({ mediaType, mediaCategory, page })
   ),
-  mediaDetail: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaId}`
+  mediaDetail: async ({ mediaType, mediaId }) => await axiosClient.get(
+    tmdbEndpoints.mediaDetail({ mediaType, mediaId })
   ),
-  mediaGenres: ({ mediaType }) => tmdbConfig.getUrl(
-    `genre/${mediaType}/list`
+  mediaGenres: async ({ mediaType }) => await axiosClient.get(
+    tmdbEndpoints.mediaGenres({ mediaType })
   ),
-  mediaCredits: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaId}/credits`
+  mediaCredits: async ({ mediaType, mediaId }) => await axiosClient.get(
+    tmdbEndpoints.mediaCredits({ mediaType, mediaId })
   ),
-  mediaVideos: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaId}/videos`
+  mediaVideos: async ({ mediaType, mediaId }) => await axiosClient.get(
+    tmdbEndpoints.mediaVideos({ mediaType, mediaId })
   ),
-  mediaRecommend: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaId}/recommendations`
+  mediaImages: async ({ mediaType, mediaId }) => await axiosClient.get(
+    tmdbEndpoints.mediaImages({ mediaType, mediaId })
   ),
-  mediaImages: ({ mediaType, mediaId }) => tmdbConfig.getUrl(
-    `${mediaType}/${mediaId}/images`
+  mediaRecommend: async ({ mediaType, mediaId }) => await axiosClient.get(
+    tmdbEndpoints.mediaRecommend({ mediaType, mediaId })
   ),
-  mediaSearch: ({ mediaType, query, page }) => tmdbConfig.getUrl(
-    `search/${mediaType}`, { query, page }
+  mediaSearch: async ({ mediaType, query, page }) => await axiosClient.get(
+    tmdbEndpoints.mediaSearch({ mediaType, query, page })
   ),
-  personDetail: ({ personId }) => tmdbConfig.getUrl(
-    `person/${personId}`
+  personDetail: async ({ personId }) => await axiosClient.get(
+    tmdbEndpoints.personDetail({ personId })
   ),
-  personMedias: ({ personId }) => tmdbConfig.getUrl(
-    `person/${personId}/combined_credits`
-  ),
+  personMedias: async ({ personId }) => await axiosClient.get(
+    tmdbEndpoints.personMedias({ personId })
+  )
 };
 
-export default tmdbEndpoints;
+export default tmdbApi;
