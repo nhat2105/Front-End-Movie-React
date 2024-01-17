@@ -13,8 +13,8 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'movies',
-    port: 3305 //myadmin port
+    //database: 'movies',
+    port: 3306 //myadmin port
 
 })
 
